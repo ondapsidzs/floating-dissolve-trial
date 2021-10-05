@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <style>
+      div {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 80%;
+        margin: 0 auto;
+        text-align: justify;
+      }
+
+      .text {
+        cursor: default;
+        position: relative;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 3rem;
+      }
+
+      .animation {
+        animation-name: goodbye;
+        animation-duration: 3s;
+        animation-timing-function: ease-in-out;
+        animation-fill-mode: forwards;
+      }
+
+      .display {
+        display: inline-block;
+      }
+
+      @keyframes goodbye {
+        0% {
+          opacity: 100%;
+          color: red;
+        }
+
+        100% {
+          opacity: 0%;
+          transform: translate(100px, -100px) rotate(360deg);
+          color: blue;
+        }
+      }
+    </style>
+
+    <title>Document</title>
+  </head>
+
+  <body>
+    <div class="text">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos laboriosam
+      sapiente accusantium necessitatibus, temporibus consequuntur nisi tempora
+      error sunt nobis excepturi suscipit adipisci praesentium expedita quo
+      commodi odit! Expedita, beatae!
+    </div>
+
+    <script>
+      var letters = document.querySelector("div"),
+        divWord = letters.innerHTML,
+        letterArray = [],
+        newLetterArray = [],
+        newContent = "";
+
+      letters.style.display = "none";
+
+      newContent = document.createElement("div");
+      document.body.append(newContent);
+
+      for (let i = 0; i < divWord.length; i++) {
+        let newSpan = document.createElement("span");
+        newSpan.innerHTML = divWord[i];
+        newSpan.classList.add("text");
+
+        letterArray.push(newSpan);
+      }
+
+      for (let i = 0; i < letterArray.length; i++) {
+        letterArray[i].addEventListener("mouseover", function () {
+          this.classList.add("display");
+          this.classList.add("animation");
+        });
+
+        newContent.appendChild(letterArray[i]);
+      }
+    </script>
+  </body>
+</html>
